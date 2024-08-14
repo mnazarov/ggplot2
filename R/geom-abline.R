@@ -16,7 +16,7 @@ NULL
 #' to vary across facets, construct the data frame yourself and use aesthetics.
 #'
 #' Unlike most other geoms, these geoms do not inherit aesthetics from the plot
-#' default, because they do not understand x and y aesthetics which are
+#' default by default, because they do not understand x and y aesthetics which are
 #' commonly set in the plot. They also do not affect the x and y scales.
 #'
 #' @section Aesthetics:
@@ -73,7 +73,8 @@ geom_abline <- function(mapping = NULL, data = NULL,
                         slope,
                         intercept,
                         na.rm = FALSE,
-                        show.legend = NA) {
+                        show.legend = NA,
+                        inherit.aes = FALSE) {
 
   # If nothing set, default to y = x
   if (is.null(mapping) && missing(slope) && missing(intercept)) {
@@ -112,7 +113,7 @@ geom_abline <- function(mapping = NULL, data = NULL,
     geom = GeomAbline,
     position = PositionIdentity,
     show.legend = show.legend,
-    inherit.aes = FALSE,
+    inherit.aes = inherit.aes,
     params = list2(
       na.rm = na.rm,
       ...
